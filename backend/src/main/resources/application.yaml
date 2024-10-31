@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: swapi-api-integration
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    operations-sorter: method
+cors:
+  allowed-origins: "http://localhost:4200"
+  allowed-methods: "GET"

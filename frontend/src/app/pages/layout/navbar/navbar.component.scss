@@ -1,0 +1,13 @@
+.dropdown-menu {
+    background-color: black;
+}
+.dropdown-menu li a {
+    color: white;;
+}
+.dropdown-menu li a:hover {
+    background-color: #333;
+    opacity: 0.8;
+}
+.dropdown-menu li {
+    cursor: pointer;
+}

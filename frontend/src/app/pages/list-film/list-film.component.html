@@ -1,0 +1,100 @@
+<app-navbar></app-navbar>
+<main>
+
+  <section class="py-1 text-center container">
+    <div class="row py-lg-2">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light m-5">Films <i  class="bi bi-film" style="font-size: 10px;"></i></h1>
+        <div>
+          <p>Recher un film par le  titre</p>
+          <form class="d-flex mt-3 mt-lg-0" role="search">
+            <input (keyup)="searchByTitle()" [ngModelOptions]="{standalone: true}" [(ngModel)]="search" class="form-control me-2" type="input" placeholder="Exemple: Irvin Kershner" aria-label="Search">
+            <button class="btn btn-outline-secondary" (click)="searchByTitle()">Rechercher</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="album py-5 bg-body-tertiary">
+    <div class="container">
+      @if (showLoading) {
+        <app-loading></app-loading>
+       }
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        @if( films.length) {
+          @for (film of films; track $index) {
+            <div class="col">
+              <div class="card shadow-sm">
+                <div class="card-body">
+                  <div class="list-group">
+                    <a class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+                      <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
+                      <div class="d-flex gap-2 w-100 justify-content-between">
+                        <div>
+                          <h6 class="mb-0">Titre</h6>
+                          <p class="mb-0 opacity-75">{{film.title}}</p>
+                        </div>
+                      </div>
+                    </a>
+                    <a class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+                      <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
+                      <div class="d-flex gap-2 w-100 justify-content-between">
+                        <div>
+                          <h6 class="mb-0">Directeur</h6>
+                          <p class="mb-0 opacity-75">{{film.director}}</p>
+                        </div>
+                      </div>
+                    </a>
+                    <a class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+                      <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
+                      <div class="d-flex gap-2 w-100 justify-content-between">
+                        <div>
+                          <h6 class="mb-0">Producteur</h6>
+                          <p class="mb-0 opacity-75">{{film.producer}}</p>
+                        </div>
+                      </div>
+                    </a>
+                    <a class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+                      <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
+                      <div class="d-flex gap-2 w-100 justify-content-between">
+                        <div>
+                          <h6 class="mb-0">Date publication</h6>
+                          <p class="mb-0 opacity-75">{{film.releaseDate | date: 'dd/MM/YYYY'}}</p>
+                        </div>
+                      </div>
+                    </a>
+                    <a class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+                      <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
+                      <div class="d-flex gap-2 w-100 justify-content-between">
+                        <div>
+                          <h6 class="mb-0">exploration d'ouverture</h6>
+                          <p class="mb-0 opacity-75" [title]=film.openingCrawl>{{film.openingCrawl | slice: 0: 80}}...</p>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                <!--   <div class="d-flex justify-content-between align-items-center mt-2">
+                    <div class="btn-group">
+                      <button type="button" (click)="showDetails($index)" class="btn btn-sm btn-outline-secondary">Plus de détails <i class="bi bi-eye"></i></button>
+                    </div>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+          }
+        }@else {
+             @if (!showLoading) {
+              <div class="text-center d-flex align-items-center justify-content-center">
+                <p>
+                  Aucun film trouvé avec ce titre.
+                </p>
+              </div>
+             }
+        }
+      </div>
+    </div>
+  </div>
+
+</main>

@@ -1,0 +1,108 @@
+<app-navbar></app-navbar>
+<main>
+
+  <section class="py-1 text-center container">
+    <div class="row py-lg-2">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light m-5">Planètes <i  class="bi bi-globe" style="font-size: 10px;"></i></h1>
+        <div>
+          <p>Recher une palnète par le nom</p>
+          <form class="d-flex mt-3 mt-lg-0" role="search">
+            <input (keyup)="search()" [ngModelOptions]="{standalone: true}"
+            [(ngModel)]="searchInput" class="form-control me-2"
+             type="input" placeholder="Exemple: Tatooine" aria-label="Search">
+            <button class="btn btn-outline-secondary" (click)="search()">Rechercher</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="album py-5 bg-body-tertiary">
+    <div class="container">
+
+      @if (showLoading) {
+        <app-loading></app-loading>
+       }
+
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        @if( planets.length) {
+          @for (p of planets; track $index) {
+            <div class="col">
+              <div class="card shadow-sm">
+                <div class="card-body">
+                  <div class="list-group">
+                    <a class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+                      <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
+                      <div class="d-flex gap-2 w-100 justify-content-between">
+                        <div>
+                          <h6 class="mb-0">Nom</h6>
+                          <p class="mb-0 opacity-75">{{p.name}}</p>
+                        </div>
+                      </div>
+                    </a>
+                    <a class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+                      <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
+                      <div class="d-flex gap-2 w-100 justify-content-between">
+                        <div>
+                          <h6 class="mb-0">Periode de rotation</h6>
+                          <p class="mb-0 opacity-75">{{p.rotationPeriod}}</p>
+                        </div>
+                      </div>
+                    </a>
+                    <a class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+                      <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
+                      <div class="d-flex gap-2 w-100 justify-content-between">
+                        <div>
+                          <h6 class="mb-0">Période d'orbite</h6>
+                          <p class="mb-0 opacity-75">{{p.orbitalPeriod}}</p>
+                        </div>
+                      </div>
+                    </a>
+                    <a class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+                      <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
+                      <div class="d-flex gap-2 w-100 justify-content-between">
+                        <div>
+                          <h6 class="mb-0">Diamètre</h6>
+                          <p class="mb-0 opacity-75">{{p.diameter}}</p>
+                        </div>
+                      </div>
+                    </a>
+                    <a class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+                      <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
+                      <div class="d-flex gap-2 w-100 justify-content-between">
+                        <div>
+                          <h6 class="mb-0">Terrain</h6>
+                          <p class="mb-0 opacity-75">{{p.terrain}}</p>
+                        </div>
+                      </div>
+                    </a>
+                    <a class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+                        <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
+                        <div class="d-flex gap-2 w-100 justify-content-between">
+                          <div>
+                            <h6 class="mb-0">Population</h6>
+                            <p class="mb-0 opacity-75">{{p.population}}</p>
+                          </div>
+                        </div>
+                      </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          }
+        }@else {
+            @if(!showLoading) {
+              <div class="text-center d-flex align-items-center justify-content-center">
+                <p>
+                  Aucune planète trouvée avec ce nom.
+                </p>
+              </div>
+            }
+        }
+      </div>
+    </div>
+  </div>
+
+</main>

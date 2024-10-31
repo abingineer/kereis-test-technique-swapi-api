@@ -1,0 +1,27 @@
+<app-navbar></app-navbar>
+<div class="text-center p-3">
+  <div class="d-flex justify-content-center align-items-center gap-1">
+    <h2>Star Wars</h2>
+    <i  class="bi bi-film align-self-start" style="font-size: 10px;"></i>
+  </div>
+  <p>Cliquer sur chacun des menus ci-dessous pour explorer d'avantage</p>
+</div>
+  <div class="text-center chevron">
+    <i class="bi bi-arrow-down-circle"  style="font-size: 2rem"></i>
+  </div>
+ 
+ <div class="container mt-2 pb-5">
+  <div class="row justify-content-center align-items-center">
+     @for (menu of menuData; track $index) {
+      <div class="col-md-4 mb-4">
+        <div class="card" [routerLink]="menu.route" routerLinkActive="router-link-active" >
+          <img [src]="menu.img" [alt]="menu.title" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title"><span class="badge text-bg-dark">{{ menu.title }}</span></h5>
+          </div>
+        </div>
+      </div>
+     }
+  </div>
+ </div>
+ 
